@@ -4,9 +4,10 @@ var fs = require('fs'),
     gutil = require('gulp-util'),
     glob = require('glob');
 
+
 var DIRECTIVE_REGEX = /^[\/\s#]*?=\s*?((?:require|include)(?:_tree|_directory)?)\s+(.*$)/mg;
-var PREPEND_REGEX = /^[\/\s#]*\s*?((?:@codekit-prepend))\s+(.*$)/mg;
-var APPEND_REGEX = /^[\/\s#]*\s*?((?:@codekit-append))\s+(.*$)/mg;
+var PREPEND_REGEX = /^[\/\s#]*\s*?((?:@codekit-prepend \"))(.*)(?:\";|\")/mg;
+var APPEND_REGEX = /^[\/\s#]*\s*?((?:@codekit-append \"))(.*)(?:\";|\")/mg;
 
 var requiredFiles = {},
     extensions = [];
@@ -99,7 +100,6 @@ function expand(fileContents, filePath, regex) {
         }
 
         thisMatchText = thisMatchText || original;
-
         if(directiveType === '@codekit-prepend'){
             returnText = prependString(returnText, start, end, thisMatchText);
         }else if(directiveType === '@codekit-append'){
@@ -153,7 +153,7 @@ function globMatch(match, filePath) {
         }
 
         for (var i = 0; i < negations.length; i++) {
-            var negationFiles = _internalGlob(negations[i].substring(1), filePath);
+            var negationFiles = _internalGlob(negations[i], filePath);
             files = difference(files, negationFiles);
         }
     }
@@ -194,12 +194,14 @@ function _internalGlob(thisGlob, filePath) {
 function replaceStringByIndices(string, start, end, replacement) {
     return string.substring(0, start) + replacement + string.substring(end);
 }
+
 function prependString(string, start, end, prepend) {
     // cache prepend
     prependCache = prepend + prependCache;
     // remove directive
     return string.substring(0, start) + string.substring(end);
 }
+
 function appendString(string, start, end, append) {
     // cache append
     appendCache = append + appendCache;

@@ -93,9 +93,10 @@ gulp.task("default", "scripts");
 We support prepend and append to the file with the codekit syntax:
 
 ```javascript
-// @codekit-prepend relative/path/to/file.js
-// @codekit-append relative/path/to/file.js
-// @codekit-prepend "relative/path/to/file.js ", "relative/path/to/file.js "
+// @codekit-prepend "relative/path/to/file.js";
+// @codekit-append "relative/path/to/file.js";
+// @codekit-prepend ["relative/path/to/file.js ", "relative/path/to/file.js"];
+// @codekit-append ["relative/path/to/file.js ", "relative/path/to/file.js"];
 ```
 
 ## Options
@@ -104,6 +105,13 @@ We support prepend and append to the file with the codekit syntax:
 	* If set, all inclusions that does not match the extension(s) will be ignored
 
 ## Release log
+
+#### fork
+* added support for codekit-(prepend|append) syntax
+
+#### 1.1.1
+* Merged community fix by [trolev](https://github.com/trolev)
+
 #### 1.1.0
 * Merged feature: Keep leading whitespaces by [maxgalbu](https://github.com/maxgalbu)
 
