@@ -132,6 +132,8 @@ function globMatch(match, filePath) {
 
     if (directiveType === 'require' || directiveType === 'include' || directiveType.indexOf('codekit') !== -1) {
         if(relativeFilePath.charAt(relativeFilePath.length-1).match(/[;]/g)) {
+            relativeFilePath = relativeFilePath.replace(';', '');
+        }
         if (relativeFilePath.charAt(0).match(/['"]/g)) {
             // optional [] on multiple files
             relativeFilePath = '[' + relativeFilePath + ']';
