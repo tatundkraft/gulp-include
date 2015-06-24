@@ -6,6 +6,7 @@ var fs = require('fs'),
 
 
 var DIRECTIVE_REGEX = /^[\/\s#]*?=\s*?((?:require|include)(?:_tree|_directory)?)\s+(.*$)/mg;
+    // DIRECTIVE_REGEX = /^[\/\s#]*?=\s*?((?:require|include)(?:_tree|_directory)?)(\s*?\")(.*)(?:\";|\")/mg;
 var PREPEND_REGEX = /^[\/\s#]*\s*?((?:@codekit-prepend \"))(.*)(?:\";|\")/mg;
 var APPEND_REGEX = /^[\/\s#]*\s*?((?:@codekit-append \"))(.*)(?:\";|\")/mg;
 
@@ -130,6 +131,7 @@ function globMatch(match, filePath) {
     }
 
     if (directiveType === 'require' || directiveType === 'include' || directiveType.indexOf('codekit') !== -1) {
+        if(relativeFilePath.charAt(relativeFilePath.length-1).match(/[;]/g)) {
         if (relativeFilePath.charAt(0).match(/['"]/g)) {
             // optional [] on multiple files
             relativeFilePath = '[' + relativeFilePath + ']';
