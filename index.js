@@ -100,7 +100,7 @@ function expand(fileContents, filePath, regex) {
             }
         }
 
-        thisMatchText = thisMatchText || original;
+        thisMatchText = thisMatchText || '';
         if(directiveType === '@codekit-prepend'){
             returnText = prependString(returnText, start, end, thisMatchText);
         }else if(directiveType === '@codekit-append'){
