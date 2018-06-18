@@ -1,13 +1,16 @@
 {
   "name": "gulp-include",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Makes inclusion of files a breeze. Enables functionality similar to that of snockets / sprockets or other file insertion compilation tools.",
-  "homepage": "https://github.com/deseloper/gulp-include",
+  "homepage": "https://github.com/tatundkraft/gulp-include",
   "repository": {
     "type": "git",
-    "url": "git://github.com/deseloper/gulp-include.git"
+    "url": "git://github.com/tatundkraft/gulp-include.git"
   },
-  "main": "index.js",
+  "main": "./index.js",
+  "files": [
+      "index.js"
+    ],
   "scripts": {
     "test": "mocha"
   },
@@ -29,9 +32,7 @@
   "devDependencies": {
     "gulp": "~3.3.4",
     "mocha": "~1.17.0",
-    "should": "~2.1.1"
-  },
-  "dependencies": {
+    "should": "~2.1.1",
     "event-stream": "~3.1.0",
     "glob": "^4.0.0",
     "gulp-util": "~2.2.10"
